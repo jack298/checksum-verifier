@@ -17,7 +17,7 @@ my $checksum_calc = 0;
 my $is_correct = 0;
 
 GetOptions ("sha256-checksum=s" => \$checksum_sha256,
-			"md5-checksum=s"	=> \$checksum_md5) or die "$usage";
+	    "md5-checksum=s" =>\$checksum_md5) or die "$usage";
 			
 ############# SETUP #############
 
@@ -32,7 +32,7 @@ if ($checksum_sha256)
 	my $sha = Digest::SHA->new(256);
 	$sha->addfile($file, "b");
 	$checksum_calc = $sha->hexdigest;
-	$is_correct = 1 if $checksum_calc eq $checksum_sha256;
+	$is_correct = 1 if ($checksum_calc eq $checksum_sha256);
 }
 
 elsif ($checksum_md5)
